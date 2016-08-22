@@ -16,7 +16,8 @@ before_install:
   - sleep 5
   - sudo docker pull tchughesiv/cf-mini
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
-  - sudo apt-get update && apt-get install dnsmasq
+  - sudo apt-get update
+  - sudo apt-get install dnsmasq
   - sudo echo -e '\naddress=/cf-mini.example/10.x.x.x' >> /etc/dnsmasq.conf
   - sudo dpkg-reconfigure resolvconf
   - sudo /etc/init.d/dnsmasq restart
