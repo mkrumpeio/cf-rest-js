@@ -42,6 +42,10 @@ script:
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - curl http://hello.cf-mini.example -i
+  - START=$(date +%s);
+  - until  $(httping -qc1 http://hello.cf-mini.example) ; do sleep 5 ; done
+  - END=$(date +%s);
+  - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - echo "sleeping for 5 minutes to wait for CF to start"
   - sleep 500
   - sudo docker logs $IMAGE
