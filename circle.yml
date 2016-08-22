@@ -16,6 +16,11 @@ dependencies:
     - sudo dpkg-reconfigure -fnoninteractive resolvconf
     - sudo /etc/init.d/dnsmasq restart
     - ping -c 4 api.cf-mini.example
+    - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+    - START=$(date +%s);
+    - until  $(curl --head --fail http://hello.cf-mini.example) ; do sleep 35; done
+    - END=$(date +%s);
+    - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
 
 test:
   override:
