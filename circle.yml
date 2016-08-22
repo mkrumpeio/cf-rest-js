@@ -6,18 +6,18 @@ machine:
 
 dependencies:
   override:
-    - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' >> /etc/default/docker
+    - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' | sudo tee /etc/default/docker > /dev/null
+    - sudo service docker restart
     - docker info
     - docker pull tchughesiv/cf-mini
     - docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
-    - apt-get update
-    - apt-get install dnsmasq httping
-    - docker ps
-    - IMAGE=`docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
-    - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
-    - echo "address=/cf-mini.example/${IP}" >> tee -a /etc/dnsmasq.conf
-    - dpkg-reconfigure resolvconf
-    - /etc/init.d/dnsmasq restart
+    - sudo apt-get update
+    - sudo apt-get install dnsmasq httping
+    - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+    - IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
+    - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
+    - sudo dpkg-reconfigure resolvconf
+    - sudo /etc/init.d/dnsmasq restart
     - ping -c 4 api.cf-mini.example
 
 test:
