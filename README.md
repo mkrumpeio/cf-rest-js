@@ -10,6 +10,18 @@
 
 #### Note: This package is not ready for a production App yet.
 
+# Table of Contents
+
+- [Overview](#overview)
+- [Focus](#focus)
+- [Getting Started](#getting-started)
+- [JSDoc](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master)
+- [Changelog](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
+- [Testing](#testing)
+- [Issues](#issues)
+
+# Overview
+
 This project provides a simple client library to interact with the [Cloud Foundry Architecture](https://docs.pivotal.io/pivotalcf/concepts/architecture/):
 
 ![ScreenShot](https://raw.githubusercontent.com/IBM-Bluemix/cf-nodejs-client/master/docs/cf_architecture_block.png)
@@ -36,11 +48,9 @@ Using this library, you could interact with the following platforms: [PWS](https
 | [User provided Services](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-UserProvidedServices)  |                    	    |                       	|
 | [Users](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Users)                   |                    	    |                       	|
 
-# Applications
+# Focus
 
-[Node.js](https://nodejs.org/) with [Express](http://expressjs.com/) are a great combination to develop Web applications. If you <a href="https://www.google.com/trends/explore#q=python%20flask%2C%20node%20express%2C%20golang%20pat%2C%20java%20spark%2C%20ruby%20sinatra&cmpt=q&tz=Etc%2FGMT-2" target="_blank">observe the Sinatra market</a>, you will notice that Node.js has a huge Traction.
-
-The development doesn't cover the whole CC API. Main areas of development are:
+The development doesn't cover the whole CloudController API. Main areas of development are:
 
 **App life cycle:**
 
@@ -72,8 +82,8 @@ If you need to interact with a Cloud Foundry platform try this [online tool](htt
 "use-strict";
 
 const endpoint = "https://api.ng.bluemix.net";
-const username = "PWS_USERNAME";
-const password = "PWS_PASSWORD";
+const username = "BLUEMIX_USERNAME";
+const password = "BLUEMIX_PASSWORD";
 
 const CloudController = new (require("cf-client")).CloudController(endpoint);
 const UsersUAA = new (require("cf-client")).UsersUAA;
@@ -100,10 +110,6 @@ Explore the library and if you like the features, use it on your App:
 npm install cf-client --save
 
 ```
-
-# Technical Documentation
-
-[JSDoc](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master)
 
 # Testing
 
@@ -137,16 +143,13 @@ istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 
 ```
 
-**Continous integration:**
+# Issues
 
-``` shell
-https://travis-ci.org/IBM-Bluemix/cf-nodejs-client/
+If you have any question or doubt, please [create an issue](https://github.com/IBM-Bluemix/cf-nodejs-client/issues).
 
-```
+# License
 
-# Versions
-
-Take a look this [doc](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md) to check the evolution of this Client for Cloud foundry.
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 # References
 
@@ -157,11 +160,3 @@ Take a look this [doc](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/mast
 * PWS Forum: https://support.run.pivotal.io/forums
 * Bluemix Forum: https://developer.ibm.com/answers/
 * CF for Beginners: From Zero to Hero http://slides.cf-hero.cloudcredo.io/
-
-# Issues
-
-If you have any question or doubt, please [create an issue](https://github.com/IBM-Bluemix/cf-nodejs-client/issues).
-
-# License
-
-Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
