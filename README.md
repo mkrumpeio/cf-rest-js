@@ -19,6 +19,7 @@
 - [Changelog](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
 - [Testing](#testing)
 - [Issues](#issues)
+- [References](#references)
 
 # Overview
 
