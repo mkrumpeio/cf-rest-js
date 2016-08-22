@@ -14,11 +14,14 @@ before_install:
   - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
+  - START=$(date +%s);
   - sudo docker pull tchughesiv/cf-mini
+  - END=$(date +%s);
+  - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
   - sudo apt-get update
   - sudo apt-get install dnsmasq
-  - sudo echo -e '\naddress=/cf-mini.example/10.x.x.x' >> /etc/dnsmasq.conf
+  - sudo echo -e 'address=/cf-mini.example/10.x.x.x' >> /etc/dnsmasq.conf
   - sudo dpkg-reconfigure resolvconf
   - sudo /etc/init.d/dnsmasq restart
   - ping -c 4 api.cf-mini.example
