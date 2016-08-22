@@ -12,8 +12,8 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install dnsmasq httping
     - sudo docker ps
-    - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
-    - IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
+    - IMAGE=`docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+    - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
     - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
     - sudo dpkg-reconfigure resolvconf
     - sudo /etc/init.d/dnsmasq restart
