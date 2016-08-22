@@ -13,7 +13,7 @@ dependencies:
     - sudo apt-get install dnsmasq httping
     - echo "address=/cf-mini.example/172.17.0.2" | sudo tee -a /etc/dnsmasq.conf > /dev/null
     - sudo echo resolvconf resolvconf/linkify-resolvconf boolean true | sudo debconf-set-selections -v
-    - dpkg-reconfigure -fnoninteractive resolvconf
+    - sudo dpkg-reconfigure -fnoninteractive resolvconf
     - sudo /etc/init.d/dnsmasq restart
     - ping -c 4 api.cf-mini.example
 
