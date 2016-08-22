@@ -22,6 +22,7 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install dnsmasq
   - sudo docker inspect tchughesiv/cf-mini
+  - sudo docker ps
   - IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' tchughesiv/cf-mini`
   - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
   - sudo dpkg-reconfigure resolvconf
