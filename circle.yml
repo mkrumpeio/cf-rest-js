@@ -6,14 +6,19 @@ machine:
 
 dependencies:
   override:
+    - -s btrfs
+    - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G -e lxc -D --userland-proxy=false"' | sudo tee /etc/default/docker > /dev/null
+    - sudo service docker restart
     - docker info
     - docker pull tchughesiv/cf-mini
-    - docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
+    - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
     - sudo apt-get update
     - sudo apt-get install dnsmasq httping
     - sudo docker ps
     - IMAGE=`docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+    - echo $IMAGE
     - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
+    - echo $IP
     - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
     - sudo dpkg-reconfigure resolvconf
     - sudo /etc/init.d/dnsmasq restart
