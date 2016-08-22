@@ -11,9 +11,11 @@ node_js:
   - 6.3.0
 
 before_install:
-  - sudo service docker stop
-  - sudo echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' >> /etc/default/docker
-  - sudo service docker start
+  - sudo apt-get update
+  - sudo apt-get upgrade lxc-docker
+  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
+  - sudo service docker restart
+  - sleep 5
   - sudo docker pull tchughesiv/cf-mini
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
   - sudo apt-get update && apt-get install dnsmasq
