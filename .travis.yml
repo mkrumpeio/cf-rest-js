@@ -1,5 +1,10 @@
 sudo: required
 
+env:
+  global:
+    - LOCAL_INSTANCE_1_CF_API_URL=https://api.cf-mini.example
+    - LOCAL_INSTANCE_1_username=admin
+    - LOCAL_INSTANCE_1_password=c1oudc0w
 services:
   - docker
 
