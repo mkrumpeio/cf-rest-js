@@ -8,11 +8,9 @@ dependencies:
   override:
     - docker info
     - docker pull tchughesiv/cf-mini
-    - sudo docker run --privileged -d -name cf -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
+    - sudo docker run --privileged -d -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
     - sudo apt-get update
     - sudo apt-get install dnsmasq httping
-    - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' cf`
-    - echo $IP
     - echo "address=/cf-mini.example/172.17.0.2 | sudo tee -a /etc/dnsmasq.conf > /dev/null
     - sudo dpkg-reconfigure resolvconf
     - sudo /etc/init.d/dnsmasq restart
