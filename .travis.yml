@@ -43,6 +43,6 @@ script:
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - curl http://hello.cf-mini.example -i
   - echo "sleeping for 5 minutes to wait for CF to start"
-  - sleep 300
+  - sleep 500
   - sudo docker logs $IMAGE
   - npm run test:local
