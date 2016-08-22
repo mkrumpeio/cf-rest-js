@@ -30,6 +30,10 @@ before_install:
   - sudo dpkg-reconfigure resolvconf
   - sudo /etc/init.d/dnsmasq restart
   - ping -c 4 api.cf-mini.example
+  - START=$(date +%s);
+  - until $(curl --output /dev/null --silent --head --fail http://myhost:myport); sleep 5; done
+  - END=$(date +%s);
+  - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - curl http://hello.cf-mini.example
 
 install: npm i
