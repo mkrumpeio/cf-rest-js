@@ -31,7 +31,7 @@ before_install:
   - sudo /etc/init.d/dnsmasq restart
   - ping -c 4 api.cf-mini.example
   - START=$(date +%s);
-  - until  $(httping -qc1 http://hello.cf-mini.example) ; do sleep 1 ; done
+  - until  $(httping -qc1 http://hello.cf-mini.example) ; do sleep 5;sudo docker logs $IMAGE ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
 
