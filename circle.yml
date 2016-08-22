@@ -12,7 +12,7 @@ dependencies:
     - sudo apt-get update
     - sudo apt-get install dnsmasq httping
     - sudo docker ps
-    - IMAGE=`docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+    - IMAGE=docker ps | grep tchughesiv/cf-mini | awk '{print $1}'
     - echo $IMAGE
     - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
     - echo $IP
