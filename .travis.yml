@@ -11,6 +11,7 @@ node_js:
   - 6.3.0
 
 before_install:
+  - sudo service docker stop
   - sudo docker daemon -H fd:// -s devicemapper --storage-opt dm.basesize=30G
   - sudo docker pull tchughesiv/cf-mini
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
@@ -18,6 +19,8 @@ before_install:
   - sudo echo -e '\naddress=/cf-mini.example/10.x.x.x' >> /etc/dnsmasq.conf
   - sudo dpkg-reconfigure resolvconf
   - sudo /etc/init.d/dnsmasq restart
+  - ping -c 4 api.cf-mini.example
+  - curl http://hello.cf-mini.example
 
 install: npm i
 
