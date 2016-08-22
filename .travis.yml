@@ -19,10 +19,12 @@ before_install:
   - sudo docker pull tchughesiv/cf-mini
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
-  - sudo docker run --privileged -d -name cf -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
+  - sudo docker run --privileged -d -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
   - sudo apt-get update
   - sudo apt-get install dnsmasq httping
-  - IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' cf`
+  - sudo docker ps
+  - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
+  - IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${IMAGE}`
   - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
   - sudo dpkg-reconfigure resolvconf
   - sudo /etc/init.d/dnsmasq restart
@@ -32,15 +34,16 @@ install: npm i
 
 script:
   - npm run lint
+  - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
   - START=$(date +%s);
-  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 30;sudo docker logs cf ; done
+  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 35;sudo docker logs $IMAGE ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - START=$(date +%s);
-  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 30;sudo docker logs cf ; done
+  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 35;sudo docker logs $IMAGE ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - echo "sleeping for 5 minutes to wait for CF to start"
   - sleep 500
-  - sudo docker logs cf
+  - sudo docker logs $IMAGE
   - npm run test:local
