@@ -6,8 +6,6 @@ machine:
 
 dependencies:
   override:
-    - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G -e lxc -D --userland-proxy=false"' | sudo tee /etc/default/docker > /dev/null
-    - sudo service docker restart
     - docker info
     - docker pull tchughesiv/cf-mini
     - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
