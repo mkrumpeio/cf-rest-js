@@ -6,7 +6,6 @@ machine:
 
 dependencies:
   override:
-    - -s btrfs
     - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G -e lxc -D --userland-proxy=false"' | sudo tee /etc/default/docker > /dev/null
     - sudo service docker restart
     - docker info
