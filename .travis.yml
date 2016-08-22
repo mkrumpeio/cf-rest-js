@@ -21,9 +21,9 @@ before_install:
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
   - sudo apt-get update
   - sudo apt-get install dnsmasq
-  - echo "address=/cf-mini.example/10.x.x.x" | sudo tee -a /etc/dnsmasq.conf > /dev/null
+  - IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' tchughesiv/cf-mini`
+  - echo "address=/cf-mini.example/${IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
   - sudo dpkg-reconfigure resolvconf
-  - sudo cat /etc/dnsmasq.conf
   - sudo /etc/init.d/dnsmasq restart
   - ping -c 4 api.cf-mini.example
   - curl http://hello.cf-mini.example
