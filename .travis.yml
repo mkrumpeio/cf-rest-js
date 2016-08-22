@@ -1,8 +1,19 @@
+sudo: required
+
+services:
+  - docker
+
 language: node_js
 node_js:
   - "0.12"
   - 4.4.7
   - 5.10.1
   - 6.3.0
+
+before_install:
+  - docker daemon -H fd:// -s devicemapper --storage-opt dm.basesize=30G
+  - docker pull tchughesiv/cf-mini
+
 install: npm i
+
 script: npm run lint
