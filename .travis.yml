@@ -38,12 +38,13 @@ script:
   - npm run lint
   - IMAGE=`sudo docker ps | grep tchughesiv/cf-mini | awk '{print $1}'`
   - START=$(date +%s);
-  - until  $(httping -qc1 http://hello.cf-mini.example) ; do sleep 5 ; done
+  - curl --output /dev/null --silent --head --fail http://hello.cf-mini.example
+  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 5 ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
-  - curl http://hello.cf-mini.example -i
+  - curl --output /dev/null --silent --head --fail http://hello.cf-mini.example
   - START=$(date +%s);
-  - until  $(httping -qc1 http://hello.cf-mini.example) ; do sleep 5 ; done
+  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 5 ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - echo "sleeping for 5 minutes to wait for CF to start"
