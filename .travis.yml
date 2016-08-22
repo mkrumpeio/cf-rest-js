@@ -12,7 +12,7 @@ node_js:
 
 before_install:
   - sudo service docker stop
-  - sydi echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' >> /etc/default/docker
+  - sudo echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' >> /etc/default/docker
   - sudo service docker start
   - sudo docker pull tchughesiv/cf-mini
   - sudo docker run --privileged -v /lib/modules:/lib/modules:ro -p 80:80 -p 443:443 -p 4443:4443 -tdi tchughesiv/cf-mini
