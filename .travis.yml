@@ -11,9 +11,7 @@ node_js:
   - 6.3.0
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get upgrade lxc-docker
-  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
+  - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
   - sudo docker pull tchughesiv/cf-mini
