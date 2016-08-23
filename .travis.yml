@@ -23,4 +23,5 @@ install: npm i
 
 script:
   - npm run lint
-  - npm run test:local
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then npm run test:local fi'
+
