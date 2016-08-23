@@ -1,6 +1,7 @@
 # cf-client
 
 [![Build Status](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client.svg)](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client)
+[![Build status](https://ci.appveyor.com/api/projects/status/adxrubgykqys7pp9?svg=true)](https://ci.appveyor.com/project/jsloyer/cf-nodejs-client)
 [![Dependency Status](https://david-dm.org/IBM-Bluemix/cf-nodejs-client.svg)](https://david-dm.org/IBM-Bluemix/cf-nodejs-client)
 [![devDependency Status](https://david-dm.org/IBM-Bluemix/cf-nodejs-client/dev-status.svg)](https://david-dm.org/IBM-Bluemix/cf-nodejs-client#info=devDependencies)
 [![Changelog](https://img.shields.io/badge/see-CHANGELOG-red.svg?style=flat-square)](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
