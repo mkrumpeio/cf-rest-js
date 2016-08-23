@@ -11,11 +11,7 @@ node_js:
   - 5.10.1
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install dnsmasq httping
-  - echo "address=/bosh-lite.com/${CF_IP}" | sudo tee -a /etc/dnsmasq.conf > /dev/null
-  - sudo dpkg-reconfigure resolvconf
-  - sudo /etc/init.d/dnsmasq restart
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sudo bash ./scripts/setup-dnsmasq.sh; fi'
 
 install: npm i
 
