@@ -9,8 +9,6 @@
 
 [![NPM](https://nodei.co/npm/cf-client.png?stars=true)](https://nodei.co/npm/cf-client/)
 
-#### Note: This package is not ready for a production App yet.
-
 # Table of Contents
 
 - [Overview](#overview)
