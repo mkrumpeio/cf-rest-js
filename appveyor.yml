@@ -1,5 +1,8 @@
 environment:
   nodejs_version: "5.10.1"
+  LOCAL_INSTANCE_1_CF_API_URL: https://api.bosh-lite.com
+  LOCAL_INSTANCE_1_username: admin
+  LOCAL_INSTANCE_1_password: admin
 
 install:
   - ps: Install-Product node $env:nodejs_version
