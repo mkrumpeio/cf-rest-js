@@ -15,6 +15,9 @@ node_js:
   - 6.3.0
 
 before_install:
+  - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' | sudo tee /etc/default/docker > /dev/null
+  - sudo service docker restart
+  - sleep 5
   - START=$(date +%s);
   - sudo docker pull tchughesiv/cf-mini
   - END=$(date +%s);
