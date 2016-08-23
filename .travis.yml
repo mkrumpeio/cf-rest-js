@@ -15,7 +15,7 @@ node_js:
   - 6.3.0
 
 before_install:
-  - sudo pt-get update && apt-get -y install libdevmapper* libudev* udev aufs-tools libdevmapper-event* libudev-dev libdevmapper-dev golang make gcc btrfs-tools libsqlite3-dev overlayroot debootstrap linux-image-generic linux-image-extra-$(uname -r) curl apt-transport-https ca-certificates && apt-get upgrade
+  - sudo apt-get update && apt-get -y install libdevmapper* libudev* udev aufs-tools libdevmapper-event* libudev-dev libdevmapper-dev golang make gcc btrfs-tools libsqlite3-dev overlayroot debootstrap linux-image-generic linux-image-extra-$(uname -r) curl apt-transport-https ca-certificates && apt-get upgrade
   - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' | sudo tee /etc/default/docker > /dev/null
   - sudo service docker restart
   - sleep 5
