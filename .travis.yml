@@ -42,8 +42,4 @@ script:
   - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 60;sudo docker logs $IMAGE ; done
   - END=$(date +%s);
   - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
-  - START=$(date +%s);
-  - until  $(curl --output /dev/null --silent --head --fail http://hello.cf-mini.example) ; do sleep 60;sudo docker logs $IMAGE ; done
-  - END=$(date +%s);
-  - echo $((END-START)) | awk '{print int($1/60)":"int($1%60)}'
   - npm run test:local
