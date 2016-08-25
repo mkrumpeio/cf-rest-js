@@ -28,6 +28,7 @@ before_install:
   - echo 'DOCKER_OPTS="-s devicemapper --storage-opt dm.basesize=30G"' | sudo tee /etc/default/docker > /dev/null
   - echo 'GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"' | sudo tee /etc/default/grub > /dev/null
   - sudo update-grub
+  - sudo cat /etc/default/grub
   - sudo service docker restart
   - sleep 5
   - docker version
