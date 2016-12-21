@@ -12,8 +12,7 @@
     "test": "npm run lint && npm run test:bluemix",
     "test:local": "mocha test --config=LOCAL_INSTANCE_1",
     "test:pws": "mocha test --config=PIVOTAL",
-    "test:bluemix": "mocha test --config=BLUEMIX",
-    "uml": "node ./node_modules/wavi/bin/wavi --png ./lib/ ./docs/umlDiagram.png --includenodemodules"
+    "test:bluemix": "mocha test --config=BLUEMIX"
   },
   "homepage": "https://github.com/IBM-Bluemix/cf-nodejs-client",
   "repository": {
@@ -48,8 +47,7 @@
     "mocha": "2.3.4",
     "nconf": "0.8.2",
     "optimist": "0.6.1",
-    "random-words": "0.0.1",
-    "wavi": "0.2.16"
+    "random-words": "0.0.1"
   },
   "keywords": [
     "cloud foundry",

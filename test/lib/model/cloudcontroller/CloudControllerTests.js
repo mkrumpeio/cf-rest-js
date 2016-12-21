@@ -22,6 +22,8 @@ var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
 CloudController = new CloudController();
 CloudFoundryUsersUAA = new CloudFoundryUsersUAA();
 
+const request = require("request");
+
 describe("Cloud Controller", function () {
 
     var authorization_endpoint = null;
@@ -81,5 +83,30 @@ describe("Cloud Controller", function () {
         });
 
     }
+
+    it("Set Custom request object", function () {
+
+        //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+        const requestWithDefaults = request.defaults({
+            rejectUnauthorized: false
+        });
+
+        CloudController.setCustomRequestObject(requestWithDefaults);
+        return CloudController.getFeaturedFlags().then(function (result) {
+            return expect(true).to.be.a('boolean');
+        });
+    });
+
+    it.skip("Set Bad Custom request object", function () {
+
+        const badRequestConfiguration = request.defaults({
+            proxy: 'http://localproxy.com'
+        });
+
+        CloudController.setCustomRequestObject(badRequestConfiguration);
+        return CloudController.getFeaturedFlags().then(function (result) {
+            return expect(true).to.be.a('boolean');
+        });
+    });
 
 });
