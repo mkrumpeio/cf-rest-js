@@ -7,8 +7,6 @@
 [![Changelog](https://img.shields.io/badge/see-CHANGELOG-red.svg?style=flat-square)](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
 [![API Doc](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master.svg)](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master)
 
-[![NPM](https://nodei.co/npm/cf-client.png?stars=true)](https://nodei.co/npm/cf-client/)
-
 # Table of Contents
 
 - [Overview](#overview)
