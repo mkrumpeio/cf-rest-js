@@ -1,7 +1,7 @@
 {
   "name": "cf-script",
-  "version": "0.2",
-  "description": "Scripting support for cloud foundry",
+  "version": "0.1.1",
+  "description": "Scripting support for cloud foundry using javascript.",
   "author": "Richard Dost <dost@ge.com>",
   "license": "Apache-2.0",
   "main": "index.js",
@@ -14,7 +14,7 @@
     "test:pws": "mocha test --config=PIVOTAL",
     "test:bluemix": "mocha test --config=BLUEMIX"
   },
-  "homepage": "https://github.com/IBM-Bluemix/cf-nodejs-client",
+  "homepage": "https://github.com/richdost/cf-script",
   "repository": {
     "type": "git",
     "url": "https://github.com/richdost/cf-script"
@@ -42,7 +42,6 @@
     "chai": "3.4.1",
     "chai-as-promised": "5.1.0",
     "eslint": "^2.11.1",
-    "eslint-config-strongloop": "^2.0.1",
     "istanbul": "0.4.1",
     "mocha": "2.3.4",
     "nconf": "0.8.2",
@@ -56,13 +55,19 @@
     "vcap",
     "pivotal",
     "pivotalcf",
-    "ibm",
-    "bluemix",
+    "ge",
+    "General Electric",
+    "predix",
     "cloud",
     "api",
     "REST",
     "cf",
     "cf client",
-    "paas"
+    "paas",
+    "js",
+    "javascript",
+    "UAA",
+    "push",
+    "app"
   ]
 }
