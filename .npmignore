@@ -1,1 +1,6 @@
 .git*
+node_modules
+.npm
+npm-debug.log*
+logs
+build
