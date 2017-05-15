@@ -1,8 +1,8 @@
 {
-  "name": "cf-client",
-  "version": "0.13.26",
-  "description": "A Cloud Foundry Client for Node.js",
-  "author": "Juan Antonio Breña Moral <bren@juanantonio.info>",
+  "name": "cf-script",
+  "version": "0.2",
+  "description": "Scripting support for cloud foundry",
+  "author": "Richard Dost <dost@ge.com>",
   "license": "Apache-2.0",
   "main": "index.js",
   "scripts": {
@@ -17,14 +17,14 @@
   "homepage": "https://github.com/IBM-Bluemix/cf-nodejs-client",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IBM-Bluemix/cf-nodejs-client.git"
+    "url": "https://github.com/richdost/cf-script"
   },
   "bugs": {
-    "url": "https://github.com/IBM-Bluemix/cf-nodejs-client/issues"
+    "url": "https://github.com/richdost/cf-script/issues"
   },
   "engines": {
-    "node": ">=4.2.3",
-    "npm": ">=2.14.7"
+    "node": ">=7.7.3",
+    "npm": ">=4.1.2"
   },
   "files": [
     "index.js",
