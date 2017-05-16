@@ -6,7 +6,8 @@ var exports = module.exports = {};
  * Library Version
  * @type {String}
  */
-exports.version = '0.13.0';
+var version = require('./package.json').version;
+exports.version = version;  
 
 /**
  * Support for Apps

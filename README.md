@@ -1,5 +1,9 @@
 # cf-client
 
+
+npm run test -- --USERNAME=<USERNAME> --PASSWORD=<PASSWORD>
+
+
 [![Build Status](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client.svg)](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client)
 [![Build status](https://ci.appveyor.com/api/projects/status/adxrubgykqys7pp9?svg=true)](https://ci.appveyor.com/project/jsloyer/cf-nodejs-client)
 [![Dependency Status](https://david-dm.org/IBM-Bluemix/cf-nodejs-client.svg)](https://david-dm.org/IBM-Bluemix/cf-nodejs-client)

@@ -9,10 +9,7 @@
     "preversion": "npm run lint && npm test",
     "lint": "eslint ./lib/model/**/*.js ./lib/utils/*.js",
     "lint:fix": "eslint --fix ./lib/model/**/*.js ./lib/utils/*.js",
-    "test": "npm run lint && npm run test:bluemix",
-    "test:local": "mocha test --config=LOCAL_INSTANCE_1",
-    "test:pws": "mocha test --config=PIVOTAL",
-    "test:bluemix": "mocha test --config=BLUEMIX"
+    "test": "echo '\n--- integration tests ---\n'; ./node_modules/.bin/mocha --timeout 25000 ./integration-tests/**/*-tests.js"
   },
   "homepage": "https://github.com/richdost/cf-script",
   "repository": {
@@ -43,7 +40,8 @@
     "chai-as-promised": "5.1.0",
     "eslint": "^2.11.1",
     "istanbul": "0.4.1",
-    "mocha": "2.3.4",
+    "minimist": "^1.2.0",
+    "mocha": "*",
     "nconf": "0.8.2",
     "optimist": "0.6.1",
     "random-words": "0.0.1"
