@@ -1,37 +1,54 @@
-# cf-client
-
-
-npm run test -- --USERNAME=<USERNAME> --PASSWORD=<PASSWORD>
-
-
-[![Build Status](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client.svg)](https://travis-ci.org/IBM-Bluemix/cf-nodejs-client)
-[![Build status](https://ci.appveyor.com/api/projects/status/adxrubgykqys7pp9?svg=true)](https://ci.appveyor.com/project/jsloyer/cf-nodejs-client)
-[![Dependency Status](https://david-dm.org/IBM-Bluemix/cf-nodejs-client.svg)](https://david-dm.org/IBM-Bluemix/cf-nodejs-client)
-[![devDependency Status](https://david-dm.org/IBM-Bluemix/cf-nodejs-client/dev-status.svg)](https://david-dm.org/IBM-Bluemix/cf-nodejs-client#info=devDependencies)
-[![Changelog](https://img.shields.io/badge/see-CHANGELOG-red.svg?style=flat-square)](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
-[![API Doc](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master.svg)](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master)
-
-# Table of Contents
-
-- [Overview](#overview)
-- [Focus](#focus)
-- [Getting Started](#getting-started)
-- [JSDoc](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master)
-- [Changelog](https://github.com/IBM-Bluemix/cf-nodejs-client/blob/master/CHANGELOG.md)
-- [Testing](#testing)
-- [Issues](#issues)
-- [References](#references)
 
 # Overview
 
-This project provides a simple client library to interact with the [Cloud Foundry Architecture](https://docs.pivotal.io/pivotalcf/concepts/architecture/):
+Use this library to interact with Predix or other Cloud Foundry clouds.
 
-![ScreenShot](https://raw.githubusercontent.com/IBM-Bluemix/cf-nodejs-client/master/docs/cf_architecture_block.png)
+###Implemented
+#####[Cloud Controller](http://apidocs.cloudfoundry.org/)
 
-Using this library, you could interact with the following platforms: [PWS](https://console.run.pivotal.io)
-, [Bluemix](https://console.ng.bluemix.net/) or a [Local Cloud Foundry instance](https://github.com/yudai/cf_nise_installer):
+Apps.js
+- [getApps](http://apidocs.cloudfoundry.org/213/apps/list_all_apps.html)
+- [add](http://apidocs.cloudfoundry.org/214/apps/creating_an_app.html)
+- [update](http://apidocs.cloudfoundry.org/217/apps/updating_an_app.html)
+- [stop](http://apidocs.cloudfoundry.org/217/apps/updating_an_app.html)
+- [start](http://apidocs.cloudfoundry.org/217/apps/updating_an_app.html)
+- [getApp](http://apidocs.cloudfoundry.org/214/apps/retrieve_a_particular_app.html)
+- [getSummary](http://apidocs.cloudfoundry.org/214/apps/get_app_summary.html)
+- [remove](http://apidocs.cloudfoundry.org/214/apps/delete_a_particular_app.html)
+- [getStats](http://apidocs.cloudfoundry.org/214/apps/get_detailed_stats_for_a_started_app.html)
+- [associateRoute](http://apidocs.cloudfoundry.org/214/apps/associate_route_with_the_app.html)
+- [dissociateRoute](http://apidocs.cloudfoundry.org/214/apps/remove_route_from_the_app.html)
+- [upload](http://apidocs.cloudfoundry.org/214/apps/uploads_the_bits_for_an_app.html)
+- [uploadFromStream](http://apidocs.cloudfoundry.org/214/apps/uploads_the_bits_for_an_app.html)
+- [getInstances](http://apidocs.cloudfoundry.org/215/apps/get_the_instance_information_for_a_started_app.html)
+- [getAppRoutse](http://apidocs.cloudfoundry.org/214/apps/list_all_routes_for_the_app.html)
+- [getServiceBindings](http://apidocs.cloudfoundry.org/221/apps/list_all_service_bindings_for_the_app.html)
+- [removeServiceBindings](http://apidocs.cloudfoundry.org/217/service_bindings/delete_a_particular_service_binding.html)
+- [getEnvironmentVariables](http://apidocs.cloudfoundry.org/222/apps/get_the_env_for_an_app.html)
+- [restage](http://apidocs.cloudfoundry.org/222/apps/restage_an_app.html)
 
-| **[Cloud Controller](http://apidocs.cloudfoundry.org/)**  	| **[UAA](https://github.com/cloudfoundry/uaa)**   	| **Logging & Metrics** 	|
+
+
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+
+
+| ****  	| **[UAA](https://github.com/cloudfoundry/uaa)**   	| **Logging & Metrics** 	|
 |------------------------ |-----------------------	|------------------------	|
 | [Apps](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Apps)                    | [Users](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-UsersUAA)             	    | [Logs](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Logs)                   	|
 | [Buildpacks](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-BuildPacks)              |                    	    |                       	|
@@ -50,46 +67,24 @@ Using this library, you could interact with the following platforms: [PWS](https
 | [User provided Services](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-UserProvidedServices)  |                    	    |                       	|
 | [Users](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Users)                   |                    	    |                       	|
 
-# Focus
 
-The development doesn't cover the whole CloudController API. Main areas of development are:
 
-**App life cycle:**
+If something is not implemented and you need it then contact me or raise an issue.
 
-* Create an App
-* Upload source code in .zip or .war (Support for Static, Python, PHP, Node.js & JEE)
-* Create an User Provided Services
-* Associate Apps with an User Provided Services
-* Start | Stop an App
-* Restage Apps
-* Scale Apps
-* Simple Logs management
-* Remove Apps
-* Remove User Provided Services
-
-**PaaS Management:**
-
-* Organization quota
-* Organization
-* Space
-* Services, Service Instances, Service Plans, User provided Services & Service Binding
-* UAA Users
-* Users
 
 # Getting Started
 
-If you need to interact with a Cloud Foundry platform try this [online tool](https://tonicdev.com/npm/cf-client) and use this example:
+Look at the integration tests or try this:
 
-``` Javascript
-"use-strict";
+```Javascript
 
-const endpoint = "https://api.ng.bluemix.net";
-const username = "BLUEMIX_USERNAME";
-const password = "BLUEMIX_PASSWORD";
+const endpoint = 'https://api.system.aws-usw02-pr.ice.predix.io';
+const username = 'your-username';
+const password = 'your-password';
 
-const CloudController = new (require("cf-client")).CloudController(endpoint);
-const UsersUAA = new (require("cf-client")).UsersUAA;
-const Apps = new (require("cf-client")).Apps(endpoint);
+const CloudController = new (require('cf-script')).CloudController(endpoint);
+const UsersUAA = new (require('cf-script')).UsersUAA;
+const Apps = new (require('cf-script')).Apps(endpoint);
 
 CloudController.getInfo().then( (result) => {
     UsersUAA.setEndPoint(result.authorization_endpoint);
@@ -100,7 +95,7 @@ CloudController.getInfo().then( (result) => {
 }).then( (result) => {
     console.log(result);
 }).catch( (reason) => {
-    console.error("Error: " + reason);
+    console.error('Error: ' + reason);
 });
 
 ```
@@ -115,27 +110,9 @@ npm install cf-client --save
 
 # Testing
 
-This project has a test suite to ensure the readability of this project. Take a look the [Tests cases](https://github.com/jabrena/cf-nodejs-client/tree/master/test/) developed with [Mocha](https://mochajs.org/) & [Chai](http://chaijs.com/api/bdd/) to understand some stuff about [Cloud Foundry](https://www.cloudfoundry.org/)  and the usage of this client. Besides, the project has invested some amount of time in testing phase to be the code with a nice coverage level.
-
-The development has been tested with:
-
-| [Local Instance](https://github.com/yudai/cf_nise_installer) | [PWS](https://console.run.pivotal.io)           | [Bluemix](https://console.ng.bluemix.net/) |
-| -------------- |:-------------:| -------:|
-| 2.25.0         | 2.60.0        | 2.54.0  |
-
-**Last test:** 2016/01/26
-
-**Testing against Bluemix:**
-
-``` shell
-export BLUEMIX_CF_API_URL=https://api.ng.bluemix.net && export BLUEMIX_username=$USERNAME && export BLUEMIX_password=$PASSWORD && npm run test:bluemix
-```
-
-**Test suite:**
-
-``` shell
-npm test
-
+To run the tests do:
+```bash
+npm run test -- --USERNAME=<your-username> --PASSWORD=<your-password>
 ```
 
 **Code coverage:**
@@ -145,20 +122,18 @@ istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 
 ```
 
-# Issues
+# Feature Requests And Issues
 
-If you have any question or doubt, please [create an issue](https://github.com/IBM-Bluemix/cf-nodejs-client/issues).
+[Create an issue](https://github.com/richdost/cf-script/issues)
+or email me.
 
 # License
 
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
+Forked from [IBM-Bluemix/cf-nodejs-client](https://github.com/IBM-Bluemix/cf-nodejs-client) which was in turn forked from [prosociallearnEU/cf-nodejs-client](https://github.com/prosociallearnEU/cf-nodejs-client).
+
 # References
 
 * API Docs: http://apidocs.cloudfoundry.org/
-* Developer list: https://lists.cloudfoundry.org/archives/list/cf-dev@lists.cloudfoundry.org/
-* PWS Console: https://console.run.pivotal.io
-* Bluemix Console: https://console.ng.bluemix.net/
-* PWS Forum: https://support.run.pivotal.io/forums
-* Bluemix Forum: https://developer.ibm.com/answers/
 * CF for Beginners: From Zero to Hero http://slides.cf-hero.cloudcredo.io/
