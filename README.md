@@ -3,10 +3,15 @@
 
 Use this library to interact with Predix or other Cloud Foundry clouds.
 
-###Implemented
-#####[Cloud Controller](http://apidocs.cloudfoundry.org/)
+###Methods
 
-Apps.js
+
+
+[Cloud Controller](http://apidocs.cloudfoundry.org/)
+- setEndpoint
+- setToken
+
+*Apps*
 - [getApps](http://apidocs.cloudfoundry.org/213/apps/list_all_apps.html)
 - [add](http://apidocs.cloudfoundry.org/214/apps/creating_an_app.html)
 - [update](http://apidocs.cloudfoundry.org/217/apps/updating_an_app.html)
@@ -27,46 +32,138 @@ Apps.js
 - [getEnvironmentVariables](http://apidocs.cloudfoundry.org/222/apps/get_the_env_for_an_app.html)
 - [restage](http://apidocs.cloudfoundry.org/222/apps/restage_an_app.html)
 
+*CloudController*
+- [getInfo](http://apidocs.cloudfoundry.org/214/info/get_info.html)
+- [getFeaturedFlags](http://apidocs.cloudfoundry.org/214/feature_flags/get_all_feature_flags.html)
+- [getFeaturedFlag](http://apidocs.cloudfoundry.org/214/feature_flags/get_the_diego_docker_feature_flag.html)
+- [setFeaturedFlag](http://apidocs.cloudfoundry.org/214/feature_flags/set_a_feature_flag.html)
+
+*Domains*
+- [getDomains](http://apidocs.cloudfoundry.org/214/domains_(deprecated)/list_all_domains_(deprecated).html)
+- [getSharedDomains](http://apidocs.cloudfoundry.org/214/shared_domains/list_all_shared_domains.html)
+
+*Events*
+- [getEvents](http://apidocs.cloudfoundry.org/214/events/list_all_events.html)
+
+*Jobs*
+- [getJob](http://apidocs.cloudfoundry.org/214/jobs/retrieve_job_that_is_queued.html)
+
+*Organizations*
+- [getOrganizations](http://apidocs.cloudfoundry.org/213/organizations/list_all_organizations.html)
+- [getMemoryUsage](http://apidocs.cloudfoundry.org/222/organizations/retrieving_organization_memory_usage.html)
+- [getOrganization](http://apidocs.cloudfoundry.org/214/organizations/retrieve_a_particular_organization.html)
+- [getSummary](http://apidocs.cloudfoundry.org/222/organizations/get_organization_summary.html)
+- [getPrivateDomains](http://apidocs.cloudfoundry.org/214/organizations/list_all_private_domains_for_the_organization.html)
+- [add](http://apidocs.cloudfoundry.org/222/organizations/creating_an_organization.html)
+- [remove](http://apidocs.cloudfoundry.org/222/organizations/delete_a_particular_organization.html)
+- [getUsers](http://apidocs.cloudfoundry.org/222/organizations/list_all_users_for_the_organization.html)
+- [addUser](http://apidocs.cloudfoundry.org/222/organizations/associate_user_with_the_organization.html)
+- [removeUser](http://apidocs.cloudfoundry.org/222/organizations/remove_user_from_the_organization.html)
+- [getManagers](http://apidocs.cloudfoundry.org/222/organizations/list_all_managers_for_the_organization.html)
+- [addManager](http://apidocs.cloudfoundry.org/222/organizations/associate_manager_with_the_organization.html)
+- [removeManager](http://apidocs.cloudfoundry.org/222/organizations/remove_manager_from_the_the_organization.html)
+
+*OrganizationsQuota*
+- [getQuotaDefinitions](http://apidocs.cloudfoundry.org/213/organization_quota_definitions/list_all_organization_quota_definitions.html)
+- [getQuotaDefinition](http://apidocs.cloudfoundry.org/213/organization_quota_definitions/retrieve_a_particular_organization_quota_definition.html)
+- [add](http://apidocs.cloudfoundry.org/222/organization_quota_definitions/creating_a_organization_quota_definition.html)
+- [remove](http://apidocs.cloudfoundry.org/222/organization_quota_definitions/delete_a_particular_organization_quota_definition.html)
+
+*Routes*
+- [getRoutes](http://apidocs.cloudfoundry.org/214/routes/list_all_routes.html)
+- [getRoute](http://apidocs.cloudfoundry.org/214/routes/retrieve_a_particular_route.html)
+- [addRoute](http://apidocs.cloudfoundry.org/213/routes/creating_a_route.html)
+- [remove](http://apidocs.cloudfoundry.org/214/routes/delete_a_particular_route.html)
+- [exists](http://apidocs.cloudfoundry.org/214/routes/check_a_route_exists.html)
+
+*ServiceBindings*
+- [getServiceBindings](http://apidocs.cloudfoundry.org/217/service_bindings/list_all_service_bindings.html)
+- [getServiceBinding](http://apidocs.cloudfoundry.org/217/service_bindings/retrieve_a_particular_service_binding.html)
+- [associateServiceWithApp](http://apidocs.cloudfoundry.org/217/service_bindings/create_a_service_binding.html)
+- [remove](http://apidocs.cloudfoundry.org/217/service_bindings/delete_a_particular_service_binding.html)
+
+*ServiceInstances*
+- [getInstances](https://apidocs.cloudfoundry.org/226/service_instances/list_all_service_instances.html)
+- [getInstance](https://apidocs.cloudfoundry.org/226/service_instances/retrieve_a_particular_service_instance.html)
+- [getInstancePermissions](https://apidocs.cloudfoundry.org/226/service_instances/retrieving_permissions_on_a_service_instance.html)
+- [getInstanceBindings] (https://apidocs.cloudfoundry.org/226/service_instances
+- [getInstanceRoutes](https://apidocs.cloudfoundry.org/226/service_instances/list_all_routes_for_the_service_instance.html)
+- [create](https://apidocs.cloudfoundry.org/226/service_instances/creating_a_service_instance.html)
+- [remove](https://apidocs.cloudfoundry.org/226/service_instances/delete_a_service_instance.html)
+- [update](https://apidocs.cloudfoundry.org/226/service_instances/update_a_service_instance.html)
+
+*ServicePlans*
+- [getServicePlans](https://apidocs.cloudfoundry.org/226/service_plans/list_all_service_plans.html)
+- [getServicePlan](https://apidocs.cloudfoundry.org/226/service_plans/retrieve_a_particular_service_plan.html)
+- [getServicePlanInstances](https://apidocs.cloudfoundry.org/226/service_plans/list_all_service_instances_for_the_service_plan.html)
+- [remove](https://apidocs.cloudfoundry.org/226/service_plans/delete_a_particular_service_plans.html)
+
+*Services*
+- [](https://apidocs.cloudfoundry.org/226/services/list_all_services.html)
+- [](https://apidocs.cloudfoundry.org/226/services/retrieve_a_particular_service.html)
+- [](https://apidocs.cloudfoundry.org/226/services/list_all_service_plans_for_the_service.html)
+- [](https://apidocs.cloudfoundry.org/226/services/delete_a_particular_service.html)
+
+*Spaces*
+- [getSpaces](http://apidocs.cloudfoundry.org/214/spaces/list_all_spaces.html)
+- [getSpace](http://apidocs.cloudfoundry.org/214/spaces/retrieve_a_particular_space.html)
+- [getSpaceRoutes](http://apidocs.cloudfoundry.org/214/spaces/list_all_routes_for_the_space.html)
+- [getSpaceApps](http://apidocs.cloudfoundry.org/214/spaces/list_all_apps_for_the_space.html)
+- [getSpaceServices](http://apidocs.cloudfoundry.org/214/spaces/list_all_services_for_the_space.html)
+- [getSpaceServiceInstances](http://apidocs.cloudfoundry.org/214/spaces/list_all_service_instances_for_the_space.html)
+- [getSummary](http://apidocs.cloudfoundry.org/222/spaces/get_space_summary.html)
+- [getUserRoles](http://apidocs.cloudfoundry.org/222/spaces/retrieving_the_roles_of_all_users_in_the_space.html)
+- [add](http://apidocs.cloudfoundry.org/222/spaces/creating_a_space.html)
+- [update](http://apidocs.cloudfoundry.org/222/spaces/update_a_space.html)
+- [remove](http://apidocs.cloudfoundry.org/222/spaces/delete_a_particular_space.html)
+- [getManagers](http://apidocs.cloudfoundry.org/222/organizations/list_all_managers_for_the_organization.html)
+- [addManager](http://apidocs.cloudfoundry.org/222/spaces/associate_manager_with_the_space.html)
+- [removeManager](http://apidocs.cloudfoundry.org/222/spaces/remove_manager_from_the_space.html)
+- [getDevelopers](http://apidocs.cloudfoundry.org/222/organizations/list_all_developers_for_the_organization.html)
+- [addDeveloper](http://apidocs.cloudfoundry.org/222/spaces/associate_developer_with_the_space.html)
+- [removeDeveloper](http://apidocs.cloudfoundry.org/222/spaces/remove_developer_from_the_space.html)
+
+*SpacesQuota*
+- [getQuotaDefinitions](http://apidocs.cloudfoundry.org/214/space_quota_definitions/list_all_space_quota_definitions.html)
+
+*Stacks*
+- [getStacks](http://apidocs.cloudfoundry.org/214/stacks/list_all_stacks.html)
+
+*UserProvidedServices*
+- [getServices](http://apidocs.cloudfoundry.org/217/user_provided_service_instances/list_all_user_provided_service_instances.html)
+- [getService](http://apidocs.cloudfoundry.org/217/user_provided_service_instances/retrieve_a_particular_user_provided_service_instance.html)
+- [add](http://apidocs.cloudfoundry.org/217/user_provided_service_instances/creating_a_user_provided_service_instance.html)
+- [remove](http://apidocs.cloudfoundry.org/217/user_provided_service_instances/delete_a_particular_user_provided_service_instance.html)
+- [getServiceBindings](http://apidocs.cloudfoundry.org/221/user_provided_service_instances/list_all_service_bindings_for_the_user_provided_service_instance.html)
+
+*Users*
+- [add](http://apidocs.cloudfoundry.org/222/users/creating_a_user.html)
+- [remove](http://apidocs.cloudfoundry.org/222/users/delete_a_particular_user.html)
+- [getUsers](http://apidocs.cloudfoundry.org/222/users/list_all_users.html)
+- [associateSpace](http://apidocs.cloudfoundry.org/222/users/associate_space_with_the_user.html)
+- [associateOrganization](http://apidocs.cloudfoundry.org/222/users/associate_organization_with_the_user.html)
+
+*Metrics
+- setEndpoint
+- setToken
+[Metrics](http://apidocs.cloudfoundry.org/)
 
 
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
 
+*Logs*
+- setEndpoint
+- setToken
+- [getRecent](http://docs.run.pivotal.io/devguide/deploy-apps/streaming-logs.html)
 
-| ****  	| **[UAA](https://github.com/cloudfoundry/uaa)**   	| **Logging & Metrics** 	|
-|------------------------ |-----------------------	|------------------------	|
-| [Apps](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Apps)                    | [Users](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-UsersUAA)             	    | [Logs](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Logs)                   	|
-| [Buildpacks](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-BuildPacks)              |                    	    |                       	|
-| [Domains](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Domains)                 |                    	    |                       	|
-| [Jobs](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Jobs)                    |                    	    |                       	|
-| [Organizations](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Organizations)           |                    	    |                       	|
-| [Organizations Quotas](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-OrganizationsQuota)     |                    	    |                       	|
-| [Routes](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Routes)                  |                    	    |                       	|
-| [Services](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Services) | | |
-| [Service Bindings](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-ServiceBindings)        |                    	    |                       	|
-| [Service Instances](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-ServiceInstances) | | |
-| [Service Plans](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-ServicePlans) | | |
-| [Spaces](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Spaces)                  |                    	    |                       	|
-| [Spaces Quotas](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-SpacesQuota)            |                    	    |                       	|
-| [Stacks](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Stacks)                  |                    	    |                       	|
-| [User provided Services](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-UserProvidedServices)  |                    	    |                       	|
-| [Users](https://doclets.io/IBM-Bluemix/cf-nodejs-client/master#dl-Users)                   |                    	    |                       	|
-
+[UAA](http://apidocs.cloudfoundry.org/)
+*UsersUaa*
+- [add](https://github.com/cloudfoundry/uaa/blob/master/docs/UAA-APIs.rst#create-a-user-post-users)
+- [updatePassword](TODO)
+- [remove](http://www.simplecloud.info/specs/draft-scim-api-01.html#delete-resource)
+- [getUsers](http://www.simplecloud.info/specs/draft-scim-api-01.html#get-resources-ops)
+- [login](TODO)
+- [refreshToken](TODO)
+- [decodeAccessToken](TODO)
 
 
 If something is not implemented and you need it then contact me or raise an issue.
