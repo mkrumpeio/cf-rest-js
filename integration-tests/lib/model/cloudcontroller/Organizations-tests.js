@@ -2,14 +2,14 @@
 /*global describe: true, before: true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -36,19 +36,19 @@ describe("Cloud foundry Organizations", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryOrg.setEndPoint(cf_api_url);
-        CloudFoundryOrgQuota.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
-        CloudFoundryUsers.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryOrg.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryOrgQuota.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryUsers.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryOrg.setToken(result);
             CloudFoundryUsersUAA.setToken(result);
@@ -59,7 +59,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it("The platform returns the Organizations defined", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         return CloudFoundryOrg.getOrganizations().then(function (result) {
             expect(result.total_results).is.a("number");
@@ -67,7 +67,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it("The platform returns the first organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
 
@@ -78,7 +78,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it("The platform returns the memory usage of an Organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
 
@@ -93,7 +93,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it("The platform returns users from the first Organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
 
@@ -107,7 +107,7 @@ describe("Cloud foundry Organizations", function () {
     });    
 
     it("The platform returns the summary from an Organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
 
@@ -121,7 +121,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it("The platform returns the private domains from an Organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
         return CloudFoundryOrg.getOrganizations().then(function (result) {
@@ -133,7 +133,7 @@ describe("Cloud foundry Organizations", function () {
     });
 
     it.skip("The platform creates an Organization", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
         var orgOptions = {
@@ -150,7 +150,7 @@ describe("Cloud foundry Organizations", function () {
     // if(environment === "LOCAL_INSTANCE_1") {
 
     //     it("The platform Creates & Remove an Organization", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var org_guid = null;
     //         var orgOptions = {
@@ -171,7 +171,7 @@ describe("Cloud foundry Organizations", function () {
     //     });  
 
     //     it("The platform Creates a Quota for Organization, Organization & Space. After they are removed.", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var quota_guid = null;
     //         var quotaOptions = {
@@ -225,7 +225,7 @@ describe("Cloud foundry Organizations", function () {
     //     });           
 
     //     it("The platform Creates a Quota for Organization, Organization, Space & user. After they are removed.", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var quota_guid = null;
     //         var quotaOptions = {
@@ -327,7 +327,7 @@ describe("Cloud foundry Organizations", function () {
     //     });
 
     //     it.skip("[TOOL] The platform Creates a Quota for Organization, Organization, Space & user.", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var accountPassword = "123456";
     //         var quota_guid = null;

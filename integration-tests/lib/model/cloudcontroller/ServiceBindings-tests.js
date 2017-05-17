@@ -2,15 +2,15 @@
 /*global describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -36,19 +36,19 @@ describe("Cloud foundry Service Bindings", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(25000);
+        // this.timeout(25000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
-        CloudFoundryServiceBindings.setEndPoint(cf_api_url);
-        CloudFoundryUserProvidedServices.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryServiceBindings.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryUserProvidedServices.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryApps.setToken(result);
             CloudFoundrySpaces.setToken(result);
@@ -66,7 +66,7 @@ describe("Cloud foundry Service Bindings", function () {
     }
 
     it("The platform returns a list of Service Bindings used", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         return CloudFoundryServiceBindings.getServiceBindings().then(function (result) {
             //console.log(result.resources[0].metadata.guid);
@@ -76,7 +76,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it("The platform returns the first Service Bindings", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var serviceBinding_guid = null;
         return CloudFoundryServiceBindings.getServiceBindings().then(function (result) {
@@ -98,7 +98,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it("The platform returns a list of Service Bindings filtering by app_guid", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var app_guid = null;
         var ERROR_MESSAGE_NO_APPS = "No App";
@@ -130,7 +130,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it("The platform returns a list of Service Bindings filtering by service_instance", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var service_guid = null;
 
@@ -161,7 +161,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it.skip("The platform associates a Service with an App", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var serviceBinding_guid = null;
         var service_guid = null;
@@ -188,7 +188,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it.skip("The platform removes a Service Binding", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var serviceBinding_guid = null;
         return CloudFoundryServiceBindings.getServiceBindings().then(function (result) {
@@ -200,7 +200,7 @@ describe("Cloud foundry Service Bindings", function () {
     });
 
     it("The platform creates an App, User Provided Service & Service Binding. Later, the test removes all stuff", function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
         //App
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -301,7 +301,7 @@ describe("Cloud foundry Service Bindings", function () {
     // if(environment === "PIVOTAL") {
 
     //     it("The platform creates an App, User Provided Service & Service Binding. Later, the test removes all stuff 2 (Alternative to remove service binding)", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         //App
     //         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -410,7 +410,7 @@ describe("Cloud foundry Service Bindings", function () {
 
     //Note: it is necessary to stop->start to apply the change with the service.
     it.skip("[TOOL] Given an app, bind a service.", function () {
-        this.timeout(30000);
+        // this.timeout(30000);
 
         var serviceBinding_guid = null;
         var app_guid = null;

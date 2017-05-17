@@ -1,6 +1,6 @@
 /*jslint node: true*/
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     chaiAsPromised = require("chai-as-promised"),
     expect = require("chai").expect;
@@ -8,8 +8,8 @@ chai.use(chaiAsPromised);
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -27,16 +27,16 @@ describe("Cloud Foundry Users UAA", function () {
     var refresh_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);        
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);        
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryApps.setToken(result);
             CloudFoundryUsersUAA.setToken(result);
@@ -57,7 +57,7 @@ describe("Cloud Foundry Users UAA", function () {
     }
 
     it("Using an unique Login, it is possible to execute several REST operations", function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
         return CloudFoundryApps.getApps().then(function () {
             return CloudFoundryApps.getApps();
@@ -71,13 +71,13 @@ describe("Cloud Foundry Users UAA", function () {
     });
 
     it("Use a refresh token to renew Oauth token", function () {
-        this.timeout(25000);
+        // this.timeout(25000);
 
         var token_type_test = null;
         var access_token_test = null;
         var refresh_token_test = null;
 
-        return CloudFoundryUsersUAA.login(username, password).then(function (result) {
+        return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password).then(function (result) {
             CloudFoundryUsersUAA.setToken(result);
             sleep(5000, function () {
                 console.log("5 second");
@@ -102,7 +102,7 @@ describe("Cloud Foundry Users UAA", function () {
     // if(environment === "LOCAL_INSTANCE_1") {
 
     //     it.skip("The platform creates an User", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var accountName = "user" + randomInt(1, 1000);
     //         var accountPassword = "123456";
@@ -125,7 +125,7 @@ describe("Cloud Foundry Users UAA", function () {
     //     });
 
     //     it("The platform retrieves Users from UAA", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         return CloudFoundryUsersUAA.getUsers(token_type, access_token).then(function (result) {
     //             expect(result.resources).to.be.a('array');
@@ -133,7 +133,7 @@ describe("Cloud Foundry Users UAA", function () {
     //     });
 
     //     it.skip("The platform retrieves Users from UAA with a filter", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var uaa_guid = null;
     //         var searchOptions = "?filter=userName eq 'demo4'";
@@ -148,7 +148,7 @@ describe("Cloud Foundry Users UAA", function () {
     //     });
 
     //     it("The platform creates & remove an User", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var accountName = "user" + randomInt(1, 1000);
     //         var accountPassword = "123456";
@@ -189,7 +189,7 @@ describe("Cloud Foundry Users UAA", function () {
     //     });
 
     //     it.skip("[DEBUGGING] The platform creates, update Password & remove an User", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var accountName = "user" + randomInt(1, 1000);
     //         var accountPassword = "123456";

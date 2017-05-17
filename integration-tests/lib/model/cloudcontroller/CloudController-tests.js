@@ -2,7 +2,7 @@
 /*global describe: true, before: true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     chaiAsPromised = require("chai-as-promised"),
     expect = require("chai").expect;
@@ -10,8 +10,8 @@ chai.use(chaiAsPromised);
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -26,15 +26,15 @@ describe("Cloud Controller:", function () {
     var token_endpoint = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryUsersUAA.setToken(result);
             CloudController.setToken(result);

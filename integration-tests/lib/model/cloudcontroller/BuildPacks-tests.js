@@ -2,7 +2,7 @@
 /*global describe: true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 

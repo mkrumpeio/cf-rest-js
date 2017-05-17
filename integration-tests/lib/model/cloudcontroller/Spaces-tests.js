@@ -2,14 +2,14 @@
 /*global describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -28,17 +28,17 @@ describe("Cloud foundry Spaces", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;             
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryApps.setToken(result);
             CloudFoundrySpaces.setToken(result);
@@ -47,7 +47,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("The platform always has defined a Space to operate.", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         return CloudFoundrySpaces.getSpaces().then(function (result) {
             expect(result.total_results).to.be.above(0);
@@ -55,7 +55,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("The platform returns a unique Space.", function () {
-        this.timeout(4500);
+        // this.timeout(4500);
 
         var space_guid = null;
 
@@ -69,7 +69,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("The platform returns Apps deployed in a Space.", function () {
-        this.timeout(4000);
+        // this.timeout(4000);
 
         var space_guid = null;
 
@@ -86,7 +86,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("The platform returns Summary from a Space.", function () {
-        this.timeout(4000);
+        // this.timeout(4000);
 
         var space_guid = null;
 
@@ -100,7 +100,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("[TOOL] The platform returns Services used in the Space.", function () {
-        this.timeout(4000);
+        // this.timeout(4000);
 
         var space_guid = null;
 
@@ -121,7 +121,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("[TOOL] The platform returns Services Services without usage in the Space.", function () {
-        this.timeout(4000);
+        // this.timeout(4000);
 
         var space_guid = null;
 
@@ -142,7 +142,7 @@ describe("Cloud foundry Spaces", function () {
     });
 
     it("The platform returns User roles from a Space.", function () {
-        this.timeout(4000);
+        // this.timeout(4000);
 
         var space_guid = null;
 

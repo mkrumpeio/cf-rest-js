@@ -2,15 +2,15 @@
 /*global describe: true, before: true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -29,17 +29,17 @@ describe("Cloud foundry Organizations Quota", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryOrg.setEndPoint(cf_api_url);
-        CloudFoundryOrgQuota.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryOrg.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryOrgQuota.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryOrg.setToken(result);
             CloudFoundryOrgQuota.setToken(result);
@@ -51,7 +51,7 @@ describe("Cloud foundry Organizations Quota", function () {
     }
 
     it("The platform returns Quota Definitions from Organizations", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var org_guid = null;
 
@@ -62,7 +62,7 @@ describe("Cloud foundry Organizations Quota", function () {
     });    
 
     it.skip("The platform returns Quota Definitions from the first Organization", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var org_guid = null;
 
@@ -77,7 +77,7 @@ describe("Cloud foundry Organizations Quota", function () {
     });  
 
     it.skip("Create a Quota Definitions", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var quotaOptions = {
             'name': "demo",
@@ -96,7 +96,7 @@ describe("Cloud foundry Organizations Quota", function () {
     });
 
     it.skip("Remove a Quota Definitions", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var quota_guid = "d87d903f-e7ee-4ae8-8840-413c6afc3616";
         var async = {
@@ -113,7 +113,7 @@ describe("Cloud foundry Organizations Quota", function () {
     // if(environment === "LOCAL_INSTANCE_1") {
 
     //     it("Add & Remove a Quota Definitions", function () {
-    //         this.timeout(3000);
+    //         // this.timeout(3000);
 
     //         var quota_guid = null;
     //         var quota_name = "quota" + randomWords() + randomInt(1, 10000);

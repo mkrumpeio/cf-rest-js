@@ -3,15 +3,15 @@
 /*global describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -49,21 +49,21 @@ describe.skip("Docker tests", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(20000);
+        // this.timeout(20000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
-        CloudFoundryDomains.setEndPoint(cf_api_url);
-        CloudFoundryRoutes.setEndPoint(cf_api_url);
-        CloudFoundryJobs.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryDomains.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryRoutes.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryJobs.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;            
             token_endpoint = result.token_endpoint;
             logging_endpoint = result.logging_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudController.setToken(result);
             CloudFoundryApps.setToken(result);
@@ -161,7 +161,7 @@ describe.skip("Docker tests", function () {
     // if(environment === "PIVOTAL") {
 
     //     it("[DEBUGGING] Create an App with a Docker Image & Remove app", function () {
-    //         this.timeout(40000);
+    //         // this.timeout(40000);
 
     //         var app_guid = null;
     //         var appName = "app2" + randomWords() + randomInt(1, 100);

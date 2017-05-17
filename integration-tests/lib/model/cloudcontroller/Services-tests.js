@@ -1,15 +1,15 @@
 /*jslint node: true*/
 /*global describe: true, before:true, it: true*/
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -35,16 +35,16 @@ describe("Services:", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(25000);
+        // this.timeout(25000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryServices.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryServices.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryServices.setToken(result);
         });
@@ -56,7 +56,7 @@ describe("Services:", function () {
     }
 
     it("Show a list of Services available", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         return CloudFoundryServices.getServices().then(function (result) {
             for(var i = 0; i < result.resources.length; i++){
@@ -67,7 +67,7 @@ describe("Services:", function () {
     });
 
     it("The platform returns a list of Services available", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         return CloudFoundryServices.getServices().then(function (result) {
             expect(result.total_results).is.a("number");
@@ -75,7 +75,7 @@ describe("Services:", function () {
     });
 
     it("The platform returns the first Service", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var service_guid = null;
         return CloudFoundryServices.getServices().then(function (result) {
@@ -94,7 +94,7 @@ describe("Services:", function () {
     });
 
     it("The platform returns a list of active Services available", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var filter = {
           q: 'active:' + true
@@ -108,7 +108,7 @@ describe("Services:", function () {
     //if(environment !== "LOCAL_INSTANCE_1") {
 
         it("The platform returns a list of Service Plans for the first Service", function () {
-            this.timeout(5000);
+            // this.timeout(5000);
 
             var service_guid = null;
             return CloudFoundryServices.getServices().then(function (result) {
@@ -122,7 +122,7 @@ describe("Services:", function () {
     //}
 
     it.skip("The platform removes a Service", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         var service_guid = null;
         return CloudFoundryServices.getServices().then(function (result) {

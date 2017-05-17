@@ -1,15 +1,15 @@
 /*jslint node: true*/
 /*global describe: true, before:true, it: true*/
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -37,20 +37,20 @@ describe("Service Instances:", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(25000);
+        // this.timeout(25000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
-        CloudFoundryServiceInstances.setEndPoint(cf_api_url);
-        CloudFoundryServicePlans.setEndPoint(cf_api_url);
-        CloudFoundryUserProvidedServices.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryServiceInstances.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryServicePlans.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryUserProvidedServices.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             token_type = result.token_type;
             access_token = result.access_token;
@@ -68,7 +68,7 @@ describe("Service Instances:", function () {
     }
 
     it("The platform returns a list of Service Instances available", function () {
-        this.timeout(5000);
+        // this.timeout(5000);
 
         return CloudFoundryServiceInstances.getInstances().then(function (result) {
             expect(result.total_results).is.a("number");
@@ -76,7 +76,7 @@ describe("Service Instances:", function () {
     });
 
     it("The platform returns the first Service", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         var messageNoService = "No service";
         var service_instance_guid = null;
@@ -94,7 +94,7 @@ describe("Service Instances:", function () {
     });
 
     it("The platform returns a list of Service Instance in a Space available", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         var filter = {
             q: 'space_guid:' + space_guid
@@ -105,7 +105,7 @@ describe("Service Instances:", function () {
     });
 
     it("The platform returns Service Instance permissions", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         var service_instance_guid = null;
         return CloudFoundryServiceInstances.getInstances().then(function (result) {
@@ -122,7 +122,7 @@ describe("Service Instances:", function () {
     });
 
     it("The platform returns Service Instance Bindings", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         var service_instance_guid = null;
         return CloudFoundryServiceInstances.getInstances().then(function (result) {
@@ -139,7 +139,7 @@ describe("Service Instances:", function () {
     });
 
     it("The platform returns Service Instance Routes", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         var service_instance_guid = null;
         return CloudFoundryServiceInstances.getInstances().then(function (result) {
@@ -156,7 +156,7 @@ describe("Service Instances:", function () {
     });
 
     it.skip("The platform creates a new Service Instance and then removes it.", function () {
-        this.timeout(50000);
+        // this.timeout(50000);
 
         return CloudFoundryServicePlans.getServicePlans().then(function (result) {
             var options = {

@@ -2,7 +2,7 @@
 /*global Promise:true, describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     chaiAsPromised = require("chai-as-promised"),
     expect = require("chai").expect;
@@ -10,8 +10,8 @@ chai.use(chaiAsPromised);
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -29,16 +29,16 @@ describe.skip("Cloud Foundry Users", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryUsers.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryUsers.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryUsersUAA.setToken(result);
             CloudFoundryUsers.setToken(result);
@@ -54,7 +54,7 @@ describe.skip("Cloud Foundry Users", function () {
     // if(environment === "LOCAL_INSTANCE_1") {
 
     //     it("The platform retrieves Users from CC", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         return CloudFoundryUsers.getUsers().then(function (result) {
     //             expect(result.resources).to.be.a('array');
@@ -62,7 +62,7 @@ describe.skip("Cloud Foundry Users", function () {
     //     });
 
     //     it("The platform creates, search & remove an User from UAA", function () {
-    //         this.timeout(5000);
+    //         // this.timeout(5000);
 
     //         var uaa_guid = null;
     //         var username = "user" + randomInt(1, 10000);

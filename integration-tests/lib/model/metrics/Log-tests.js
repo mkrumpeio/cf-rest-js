@@ -2,14 +2,10 @@
 /*global describe: true, before: true, it: true */
 "use strict";
 
-var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 
 var testEnv = require('../../../test-env');
-var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -29,17 +25,17 @@ describe("Logs:", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(20000);
+        // this.timeout(20000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             logging_endpoint = result.logging_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryUsersUAA.setToken(result);
             CloudFoundryApps.setToken(result);
@@ -48,7 +44,7 @@ describe("Logs:", function () {
     });
 
     it("The platform returns Logs", function () {
-        this.timeout(6000);
+        // this.timeout(6000);
 
         var app_guid = null;
         var ERROR_MESSAGE_NO_APPS = "No App";

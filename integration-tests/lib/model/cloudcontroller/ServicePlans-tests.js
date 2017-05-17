@@ -2,15 +2,15 @@
 /*global describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -36,16 +36,16 @@ describe("Cloud foundry Service Plans", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(25000);
+        // this.timeout(25000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryServicePlans.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryServicePlans.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;            
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             token_type = result.token_type;
             access_token = result.access_token;
@@ -59,7 +59,7 @@ describe("Cloud foundry Service Plans", function () {
     }
 
     it("Show a list of Service Plans available", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         return CloudFoundryServicePlans.getServicePlans().then(function (result) {
@@ -78,7 +78,7 @@ describe("Cloud foundry Service Plans", function () {
     });
 
     it("The platform returns a list of Service Plans available", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         return CloudFoundryServicePlans.getServicePlans().then(function (result) {
@@ -94,7 +94,7 @@ describe("Cloud foundry Service Plans", function () {
     });
 
     it("The platform returns the first Service Plan", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         var servicePlan_guid = null;
@@ -114,7 +114,7 @@ describe("Cloud foundry Service Plans", function () {
     });
 
     it("The platform returns a list of active Service Plans available", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         var filter = {
@@ -133,7 +133,7 @@ describe("Cloud foundry Service Plans", function () {
     });
 
     it("The platform returns a list of Service Instances for the first Service Plan", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         var servicePlan_guid = null;
@@ -153,7 +153,7 @@ describe("Cloud foundry Service Plans", function () {
     });
 
     it.skip("The platform removes a Service Plan", function () {
-        this.timeout(3000);
+        // this.timeout(3000);
 
         var errorMessage = "No Service Plan";
         var servicePlan_guid = null;

@@ -6,8 +6,8 @@ var chai = require("chai"),
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -24,16 +24,16 @@ describe("Cloud foundry Events", function () {
     var access_token = null;
 
     before(function () {
-        this.timeout(15000);
+        // this.timeout(15000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryEvents.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryEvents.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;
             token_endpoint = result.token_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryEvents.setToken(result);
         });
@@ -41,7 +41,7 @@ describe("Cloud foundry Events", function () {
 
     //TODO: This component has some performance problems in Pivotal systems.
     it.skip("The platform returns the Events", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
 
         return CloudFoundryEvents.getEvents().then(function (result) {
             expect(result.total_results).is.a("number");
@@ -49,7 +49,7 @@ describe("Cloud foundry Events", function () {
     });
 
     it("The platform returns the Events With Optional Query String Parameters", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
 
         var resultsPerPage = 20;
         var filter = {
@@ -66,7 +66,7 @@ describe("Cloud foundry Events", function () {
     });
 
     it("Events in 2016", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
         
         var resultsPerPage = 20;
         var filter = {
@@ -83,7 +83,7 @@ describe("Cloud foundry Events", function () {
     });
 
     it("Apps crashed in 2016", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
         
         var resultsPerPage = 20;      
         var filter = {
@@ -99,7 +99,7 @@ describe("Cloud foundry Events", function () {
     });
 
     it.skip("[TOOL] Events from an App in 2016", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
         
         var resultsPerPage = 20;
         var filter = {

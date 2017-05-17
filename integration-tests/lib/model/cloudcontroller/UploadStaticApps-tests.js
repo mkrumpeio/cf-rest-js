@@ -3,15 +3,15 @@
 /*global describe: true, before:true, it: true*/
 "use strict";
 
-var Promise = require('bluebird');
+// var Promise = require('bluebird');
 var chai = require("chai"),
     expect = require("chai").expect;
 var randomWords = require('random-words');
 
 var testEnv = require('../../../test-env');
 var cf_api_url = testEnv.cf_api_url;
-var username = testEnv.username;
-var password = testEnv.password;
+// var username = testEnv.username;
+// var password = testEnv.password;
 
 var CloudController = require("../../../../lib/model/cloudcontroller/CloudController");
 var CloudFoundryUsersUAA = require("../../../../lib/model/uaa/UsersUAA");
@@ -49,21 +49,21 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     var space_guid = null;
 
     before(function () {
-        this.timeout(20000);
+        // this.timeout(20000);
 
-        CloudController.setEndPoint(cf_api_url);
-        CloudFoundryApps.setEndPoint(cf_api_url);
-        CloudFoundrySpaces.setEndPoint(cf_api_url);
-        CloudFoundryDomains.setEndPoint(cf_api_url);
-        CloudFoundryRoutes.setEndPoint(cf_api_url);
-        CloudFoundryJobs.setEndPoint(cf_api_url);
+        CloudController.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryApps.setEndPoint(testEnv.cf_api_url);
+        CloudFoundrySpaces.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryDomains.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryRoutes.setEndPoint(testEnv.cf_api_url);
+        CloudFoundryJobs.setEndPoint(testEnv.cf_api_url);
 
         return CloudController.getInfo().then(function (result) {
             authorization_endpoint = result.authorization_endpoint;            
             token_endpoint = result.token_endpoint;
             logging_endpoint = result.logging_endpoint;
             CloudFoundryUsersUAA.setEndPoint(authorization_endpoint);
-            return CloudFoundryUsersUAA.login(username, password);
+            return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password);
         }).then(function (result) {
             CloudFoundryApps.setToken(result);
             CloudFoundrySpaces.setToken(result);
@@ -240,7 +240,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     }
 
     it("Create a Static App, Upload 1MB zip & Remove app", function () {
-        this.timeout(40000);
+        // this.timeout(40000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -291,7 +291,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     //if(environment !== "BLUEMIX") {
 
         it.skip("[TESTING] Create a Static App, Upload 1MB zip, Download Zip & Remove app", function () {
-            this.timeout(80000);
+            // this.timeout(80000);
 
             var app_guid = null;
             var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -347,7 +347,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
 
 
     it.skip("[TESTING] Create a Static App, Upload 1MB zip, get a File & Remove app", function () {
-        this.timeout(60000);
+        // this.timeout(60000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -543,7 +543,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it.skip("[TESTING] Create a Static App, Upload 1MB zip, Download Droplet & Remove app", function () {
-        this.timeout(40000);
+        // this.timeout(40000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -618,7 +618,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Update the App & Remove app", function () {
-        this.timeout(40000);
+        // this.timeout(40000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -658,7 +658,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Upload 1MB zip, Start the App, Stop & Remove", function () {
-        this.timeout(200000);
+        // this.timeout(200000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -746,7 +746,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Upload 1MB zip, Start the App, Stop, Restage & Remove", function () {
-        this.timeout(200000);
+        // this.timeout(200000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -836,7 +836,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Upload 1MB (async = false) zip & Remove app", function () {
-        this.timeout(40000);
+        // this.timeout(40000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -897,7 +897,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it.skip("Create a Static App, Upload 5MB zip & Remove app", function () {
-        this.timeout(40000);
+        // this.timeout(40000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -947,7 +947,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Upload 10MB zip & Remove app", function () {
-        this.timeout(60000);
+        // this.timeout(60000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -997,7 +997,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it.skip("Create a Static App, Upload 20MB zip & Remove app", function () {
-        this.timeout(60000);
+        // this.timeout(60000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -1047,7 +1047,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it("Create a Static App, Upload 50MB zip & Remove app", function () {
-        this.timeout(200000);
+        // this.timeout(200000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
@@ -1097,7 +1097,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
     });
 
     it.skip("Create a Static App, Upload 100MB zip & Remove app", function () {
-        this.timeout(150000);
+        // this.timeout(150000);
 
         var app_guid = null;
         var appName = "app2" + randomWords() + randomInt(1, 100);
