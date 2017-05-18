@@ -21,7 +21,7 @@ CloudFoundryUsersUAA = new CloudFoundryUsersUAA();
 CloudFoundryOrg = new CloudFoundryOrg();
 CloudFoundryOrgQuota = new CloudFoundryOrgQuota();
 
-describe("Cloud foundry Organizations Quota", function () {
+describe("Cloud Foundry Organizations Quota", function () {
 
     var authorization_endpoint = null;
     var token_endpoint = null;
@@ -67,11 +67,11 @@ describe("Cloud foundry Organizations Quota", function () {
         var org_guid = null;
 
         return CloudFoundryOrg.getOrganizations().then(function (result) {
-            console.log(result);
+            //console.log(result);
             org_guid = result.resources[0].metadata.guid;
             return CloudFoundryOrg.getQuotaDefinition(org_guid);
         }).then(function (result) {
-            console.log(result.resources);
+            //console.log(result.resources);
             expect(true).is.a("boolean");
         });
     });  
@@ -90,7 +90,6 @@ describe("Cloud foundry Organizations Quota", function () {
         };
 
         return CloudFoundryOrgQuota.add(quotaOptions).then(function (result) {
-            console.log(result);
             expect(true).is.a("boolean");
         });
     });
@@ -104,7 +103,6 @@ describe("Cloud foundry Organizations Quota", function () {
         };
 
         return CloudFoundryOrgQuota.remove(quota_guid, async).then(function (result) {
-            console.log(result);
             expect(true).is.a("boolean");
         });
     });

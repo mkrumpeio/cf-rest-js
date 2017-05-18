@@ -154,7 +154,7 @@ describe("Apps:", function () {
                 CloudFoundryApps.getInstances(app_guid).then(function () {
                     return CloudFoundryApps.getStats(app_guid);
                 }).then(function (result) {
-                    console.log(result["0"].state);
+                    //console.log(result["0"].state);
                     //console.log(counter);
                     if (result["0"].state === "RUNNING") {
                         resolve(result);
@@ -181,7 +181,7 @@ describe("Apps:", function () {
         return CloudFoundrySpaces.getSpaceApps(space_guid, filter).then(function (result) {
             app_guid = result.resources[0].metadata.guid;
             //console.log(app_guid);
-            console.log(result.resources[0].entity.state);
+            //console.log(result.resources[0].entity.state);
             return CloudFoundryApps.start(app_guid);
         }).then(function () {
             return recursiveCheckApp(app_guid);
@@ -189,7 +189,7 @@ describe("Apps:", function () {
         }).then(function () {
             return CloudFoundryApps.stop(app_guid);
         }).then(function (result) {
-            console.log(result.entity.state);
+            //console.log(result.entity.state);
             expect(true).to.equal(true);
         }).catch(function (reason) {
             expect(reason).to.equal("Not found App.");

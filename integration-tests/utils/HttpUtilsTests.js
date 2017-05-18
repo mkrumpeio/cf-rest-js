@@ -37,7 +37,7 @@ describe.skip("HttpUtils", function () {
         return HttpUtils.request(options, 200, true).then(function (result) {
             expect(result).is.a("string");
         }).catch(function (reason) {
-            console.log(reason);
+            // console.log(reason);
             expect(true).is.a("boolean");
         });
     });

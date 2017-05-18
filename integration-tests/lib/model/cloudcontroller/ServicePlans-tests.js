@@ -68,9 +68,9 @@ describe("Cloud foundry Service Plans", function () {
                     return reject(errorMessage);
                 });                
             }
-            for(var i = 0; i < result.resources.length; i++){
-                console.log(i + " | " + result.resources[i].entity.name + " | " + result.resources[i].entity.description);
-            }
+            // for(var i = 0; i < result.resources.length; i++){
+            //     console.log(i + " | " + result.resources[i].entity.name + " | " + result.resources[i].entity.description);
+            // }
             expect(result.total_results).is.a("number");
         }).catch(function (reason) {
             expect(reason).to.equal(errorMessage);

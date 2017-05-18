@@ -93,7 +93,6 @@ describe("Cloud Foundry Routes", function () {
         }).then(function (result) {
             expect(result.metadata.guid).is.a("string");
         }).catch(function (reason) {
-            console.log(reason);
             expect(reason).to.equal(ERROR_MESSAGE_NO_ROUTE);
         });
 
@@ -189,7 +188,6 @@ describe("Cloud Foundry Routes", function () {
     it("Get total of routes", function () {
         var page = 1;
         return CloudFoundryRoutes.getRoutes(page).then(function (result) {
-            console.log(result.total_results);
             expect(result.total_results).to.be.below(1001);
         });
     });   

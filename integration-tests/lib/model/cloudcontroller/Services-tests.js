@@ -59,9 +59,9 @@ describe("Services:", function () {
         // this.timeout(5000);
 
         return CloudFoundryServices.getServices().then(function (result) {
-            for(var i = 0; i < result.resources.length; i++){
-                console.log(i + " | " + result.resources[i].entity.label + " | " + result.resources[i].entity.description);
-            }
+            // for(var i = 0; i < result.resources.length; i++){
+            //     console.log(i + " | " + result.resources[i].entity.label + " | " + result.resources[i].entity.description);
+            // }
             expect(result.total_results).is.a("number");
         });
     });

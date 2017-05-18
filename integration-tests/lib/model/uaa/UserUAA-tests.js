@@ -80,7 +80,7 @@ describe("Cloud Foundry Users UAA", function () {
         return CloudFoundryUsersUAA.login(testEnv.username, testEnv.password).then(function (result) {
             CloudFoundryUsersUAA.setToken(result);
             sleep(5000, function () {
-                console.log("5 second");
+                //console.log("5 second");
             });
             return CloudFoundryUsersUAA.refreshToken();
         }).then(function (result) {

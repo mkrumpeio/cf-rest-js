@@ -3,6 +3,7 @@
 
 Use this library to interact with Predix or other Cloud Foundry clouds.
 
+WARNING: The interface will change soon.
 
 # Getting Started
 

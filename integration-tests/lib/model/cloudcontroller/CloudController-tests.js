@@ -43,7 +43,7 @@ describe("Cloud Controller:", function () {
 
     it("The connection show API Version", function () {
         return CloudController.getInfo().then(function (result) {
-            console.log(result.api_version);
+            //console.log(result.api_version);
             return expect(result.api_version).to.be.a('string');
         });
     });

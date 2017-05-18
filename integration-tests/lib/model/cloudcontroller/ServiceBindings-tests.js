@@ -124,7 +124,7 @@ describe("Cloud foundry Service Bindings", function () {
             //console.log(result.resources[0].entity.credentials);
             expect(result.total_results).is.a("number");
         }).catch(function (reason) {
-            console.log(reason);
+            //console.log(reason);
             expect(reason).to.equal(ERROR_MESSAGE_NO_APPS);
         });
     });
@@ -423,7 +423,7 @@ describe("Cloud foundry Service Bindings", function () {
         var service_guid = null
         return CloudFoundrySpaces.getSpaceApps(space_guid, filter).then(function (result) {
             app_guid = result.resources[0].metadata.guid;
-            console.log(app_guid);
+            // console.log(app_guid);
             return CloudFoundryUserProvidedServices.getServices();
         }).then(function (result) {
             //console.log(result.resources);
@@ -439,7 +439,7 @@ describe("Cloud foundry Service Bindings", function () {
                 return reject("Not found User Provided Service.");
             });
         }).then(function (result) {
-            console.log(result);
+            // console.log(result);
             return CloudFoundryServiceBindings.associateServiceWithApp(service_guid, app_guid).then(function (result) {
                 return new Promise(function (resolve) {
                     //console.log(result);
@@ -448,7 +448,7 @@ describe("Cloud foundry Service Bindings", function () {
                 });
             });
         }).then(function (result) {
-            console.log(result);
+            // console.log(result);
             expect(true).to.equal(true);
         });
     });

@@ -175,7 +175,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         return new Promise(function check(resolve, reject) {
 
             CloudFoundrySpaces.getSpaceApps(space_guid, filter).then(function (result) {
-                console.log(result.resources[0].entity.package_state);
+                //console.log(result.resources[0].entity.package_state);
                 //console.log(counter);
                 if (result.resources[0].entity.package_state === "STAGED") {
                     resolve(result);
@@ -198,7 +198,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         return new Promise(function check(resolve, reject) {
 
             CloudFoundryApps.getStats(app_guid).then(function (result) {
-                console.log(result["0"].state);
+                // console.log(result["0"].state);
                 //console.log(counter);
                 if (result["0"].state === "RUNNING") {
                     resolve(result);
@@ -222,7 +222,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         return new Promise(function check(resolve, reject) {
 
             CloudFoundryJobs.getJob(job_guid).then(function (result) {
-                console.log(result.entity.status);
+                // console.log(result.entity.status);
                 //console.log(counter);
                 if (result.entity.status === "finished") {
                     resolve(result);
@@ -400,7 +400,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
             return CloudFoundryApps.start(app_guid);
         //STAGING
         }).then(function () {
-            console.log(appName);
+            //console.log(appName);
             return recursiveStageApp(appName, space_guid);
         //RUNNING
         }).then(function () {
@@ -409,7 +409,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
             expect(result["0"].state).to.equal("RUNNING");
 
             sleep(5000, function () {
-                console.log("5 second");
+                //console.log("5 second");
             });
 
             url = "http://" + result["0"].stats.uris[0];
@@ -418,31 +418,25 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
                 url: url
             };            
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
                 expect(result).is.a("string");
             });
         }).then(function (result) {
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
                 expect(result).is.a("string");
             });
         }).then(function (result) {
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
                 expect(result).is.a("string");
             });
         }).then(function (result) {
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
                 expect(result).is.a("string");
             });
         }).then(function (result) {
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
                 expect(result).is.a("string");
             });                                    
         }).then(function (result) {            
-            console.log("\nFILES:\n");
             return CloudFoundryApps.getFile(app_guid,".");
         //}).then(function (result) {
         //    console.log(result);
@@ -460,19 +454,16 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         //    console.log("\n" + filePath + "\n");         
         //    return CloudFoundryApps.getFile(app_guid, filePath);       
         }).then(function (result) {
-            console.log(result);
             var filePath = "staging_info.yml";
             console.log("\n" + filePath + "\n");         
             return CloudFoundryApps.getFile(app_guid, filePath);                                        
         }).then(function (result) {
-            console.log(result);
             var filePath = "./logs/staging_task.log";
-            console.log("\n" + filePath + "\n");         
+            //console.log("\n" + filePath + "\n");         
             return CloudFoundryApps.getFile(app_guid, filePath);
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             var filePath = "./app/";
-            console.log("\n" + filePath + "\n");         
             return CloudFoundryApps.getFile(app_guid, filePath);  
         //}).then(function (result) {
         //    console.log(result);
@@ -480,14 +471,14 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         //    console.log("\n" + filePath + "\n");         
         //    return CloudFoundryApps.getFile(app_guid, filePath);    
         }).then(function (result) {
-            console.log(result);
+            //console.log(result);
             var filePath = "./app/nginx/";
-            console.log("\n" + filePath + "\n");         
+            //console.log("\n" + filePath + "\n");         
             return CloudFoundryApps.getFile(app_guid, filePath);   
         }).then(function (result) {
             console.log(result);
             var filePath = "./app/nginx/logs/";
-            console.log("\n" + filePath + "\n");         
+            //console.log("\n" + filePath + "\n");         
             return CloudFoundryApps.getFile(app_guid, filePath);    
         //}).then(function (result) {
         //    console.log(result);
@@ -505,9 +496,8 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         //    console.log("\n" + filePath + "\n");         
         //    return CloudFoundryApps.getFile(app_guid, filePath);                                          
         }).then(function (result) {
-            console.log(result);
-
-            console.log("\n" + "LOGS:" + "\n"); 
+            // console.log(result);
+            // console.log("\n" + "LOGS:" + "\n"); 
 
             logging_endpoint = logging_endpoint.replace("wss", "https");
             logging_endpoint = logging_endpoint.replace(":4443", "");
@@ -527,7 +517,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
         //    console.log("\n" + filePath + "\n");         
         //    return CloudFoundryApps.getFile(app_guid, filePath);                                                     
         }).then(function (result) {
-            console.log(result);
+            // console.log(result);
             return CloudFoundryApps.getAppRoutes(app_guid);
         }).then(function (result) {
             route_guid = result.resources[0].metadata.guid;
@@ -594,7 +584,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
             return CloudFoundryApps.start(app_guid);
         //STAGING
         }).then(function () {
-            console.log(appName);
+            //console.log(appName);
             return recursiveStageApp(appName, space_guid);
         //RUNNING
         }).then(function () {
@@ -799,7 +789,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
             return CloudFoundryApps.start(app_guid);
         //STAGING
         }).then(function () {
-            console.log(appName);
+            //console.log(appName);
             return recursiveStageApp(appName, space_guid);
         //RUNNING
         }).then(function () {
@@ -814,7 +804,7 @@ describe.skip("Cloud Foundry Upload Static Apps", function () {
             };
 
             return HttpUtils.request(options, 200, false).then(function (result) {
-                console.log(result);
+                //console.log(result);
                 expect(result).is.a("string");
             });
         }).then(function () {

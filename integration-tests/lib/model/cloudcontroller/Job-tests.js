@@ -163,7 +163,7 @@ describe.skip("Cloud Foundry Jobs", function () {
         return new Promise(function check(resolve, reject) {
 
             CloudFoundryJobs.getJob(job_guid).then(function (result) {
-                console.log(result.entity.status);
+                //console.log(result.entity.status);
                 //console.log(counter);
                 if (result.entity.status === "finished") {
                     resolve(result);
@@ -288,13 +288,13 @@ describe.skip("Cloud Foundry Jobs", function () {
             if (job_status === "queued") {
 
                 sleep(5000, function () {
-                    console.log("5 second");
+                    //console.log("5 second");
                 });
 
                 return CloudFoundryJobs.getJob(job_guid).then(function (result) {
                     return new Promise(function (resolve) {
                         var status = result.entity.status;
-                        console.log(status);
+                        // console.log(status);
                         resolve(result);
                     });
                 });
@@ -317,13 +317,13 @@ describe.skip("Cloud Foundry Jobs", function () {
             if (job_status === "queued") {
 
                 sleep(5000, function () {
-                    console.log("5 second");
+                    // console.log("5 second");
                 });
 
                 return CloudFoundryJobs.getJob(job_guid).then(function (result) {
                     return new Promise(function (resolve) {
                         var status = result.entity.status;
-                        console.log(status);
+                        //console.log(status);
                         resolve(result);
                     });
                 });
@@ -344,13 +344,13 @@ describe.skip("Cloud Foundry Jobs", function () {
             if (job_status === "queued") {
 
                 sleep(5000, function () {
-                    console.log("5 second");
+                    // console.log("5 second");
                 });
 
                 return CloudFoundryJobs.getJob(job_guid).then(function (result) {
                     return new Promise(function (resolve) {
                         var status = result.entity.status;
-                        console.log(status);
+                        //console.log(status);
                         resolve(result);
                     });
                 });

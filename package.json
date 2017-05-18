@@ -9,7 +9,7 @@
     "preversion": "npm run lint && npm test",
     "lint": "eslint ./lib/model/**/*.js ./lib/utils/*.js",
     "lint:fix": "eslint --fix ./lib/model/**/*.js ./lib/utils/*.js",
-    "test": "echo '\n--- integration tests ---\n'; ./node_modules/.bin/mocha --timeout 25000 ./integration-tests/**/*-tests.js"
+    "test": "echo '\n--- integration tests ---\n'; ./node_modules/.bin/mocha --timeout 90000 ./integration-tests/**/*-tests.js"
   },
   "homepage": "https://github.com/richdost/cf-script",
   "repository": {
