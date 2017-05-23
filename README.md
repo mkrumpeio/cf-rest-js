@@ -10,14 +10,14 @@ WARNING: The interface will change soon.
 Look at the integration tests or try this:
 
 ```Javascript
-var cfScript = require('cf-script');
+var cfRest = require('cf-rest-js');
 const endpoint = 'https://api.system.aws-usw02-pr.ice.predix.io';
 const username = 'your-username';
 const password = 'your-password';
 
-const CloudController = new (cfScript).CloudController(endpoint);
-const UsersUAA = new (cfScript).UsersUAA;
-const Apps = new (cfScript).Apps(endpoint);
+const CloudController = new (cfRest).CloudController(endpoint);
+const UsersUAA = new (cfRest).UsersUAA;
+const Apps = new (cfRest).Apps(endpoint);
 
 CloudController.getInfo().then( (result) => {
     UsersUAA.setEndPoint(result.authorization_endpoint);
@@ -50,7 +50,7 @@ istanbul cover node_modules/mocha/bin/_mocha -- -R spec
 
 # Feature Requests And Issues
 
-[Create an issue](https://github.com/richdost/cf-script/issues) or email me.
+[Create an issue](https://github.com/richdost/cf-rest-js/issues) or email me.
 
 # License
 
